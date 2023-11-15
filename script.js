@@ -1,3 +1,7 @@
+const btnAnalo = document.querySelector(".btn.analogico");
+const btnDigi = document.querySelector(".btn.digital");
+const relogio = document.querySelector("#relogio");
+
 const PonteiroSegundos = document.querySelector(".ponteiro.segundos");
 const PonteiroMinutos = document.querySelector(".ponteiro.minutos");
 const PonteiroHora = document.querySelector(".ponteiro.horas");
@@ -5,6 +9,16 @@ const PonteiroHora = document.querySelector(".ponteiro.horas");
 const QuadradoSegundos = document.querySelector(".time.segundos");
 const QuadradoMinutos = document.querySelector(".time.minutos");
 const QuadradoHora = document.querySelector(".time.horas");
+
+
+btnAnalo.addEventListener("click",() =>{
+    relogio.classList.add("analogico")
+    relogio.classList.remove("digital")
+})
+btnDigi.addEventListener("click",() =>{
+    relogio.classList.remove("analogico")
+    relogio.classList.add("digital")
+})
 
 function GiraPonteiro(element, porcentagem) {
     element.style.transform = `rotate(${porcentagem * 360}deg)`
@@ -29,11 +43,11 @@ function AcertarPonteiros() {
 
 function GetTime(){
     const data = new Date();
-    QuadradoSegundos.innerHTML = data.getSeconds()
-    QuadradoMinutos.innerHTML = data.getMinutes()
-    QuadradoHora.innerHTML = data.getHours()
+    QuadradoSegundos.innerHTML = data.getSeconds().toString().padStart(2, "0")
+    QuadradoMinutos.innerHTML = data.getMinutes().toString().padStart(2, "0")
+    QuadradoHora.innerHTML = data.getHours().toString().padStart(2, "0")
 }
 
 AcertarPonteiros();
-setInterval(AcertarPonteiros, 1000);
+setInterval(AcertarPonteiros, 100);-
 setInterval(GetTime, 1000);
